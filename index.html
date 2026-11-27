@@ -123,28 +123,17 @@
                 tags: [["R package", "#c3cbe6"], ["Documentation", "#ff8a92"]]}
         ];
 
-    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
         const tagHtml = tags => tags.map(([t, c]) => `<span class="tag" style="background:${esc(c)}">${esc(t)}</span>`).join("");
         const art = name => (document.getElementById("art-" + name) || document.getElementById("art-app")).innerHTML;
 
         document.getElementById("site-title").textContent = SITE.title;
         document.getElementById("site-desc").textContent = SITE.desc;
         document.getElementById("site-tags").innerHTML = tagHtml(SITE.tags);
+        document.getElementById("site-foot").textContent = SITE.footer;
         document.title = SITE.title;
 
-        const cards = document.getElementById("cards");
-        cards.innerHTML = PROJECTS.map(p => `
-    <a class="card" href="${esc(p.link)}" target="_blank" rel="noopener">
-      <div class="bg">${p.image ? `<img src="${esc(p.image)}" alt="">` : art(p.art)}</div>
-      <div class="info">
-        <div class="label">
-          <h2>${esc(p.title)}</h2>
-          <p class="sub">${esc(p.sub)}</p>
-        </div>
-        <p class="desc" aria-label="${esc(p.desc)}"></p>
-        <div class="tags">${tagHtml(p.tags)}</div>
-      </div>
-    </a>`).join("");
+        
 
 
     
