@@ -106,17 +106,22 @@
         const SITE = {
             title : "Alt-text for statistical graphics",
             desc:  "This project bla bla ",
-            tags: [["R", "#c3cbe6"], ["Shiny", "#c3cbe6"], ["Accessibility", "#ff8a92"]]
+            tags: [["R", "#c3cbe6"], ["Shiny", "#d6a119"], ["Accessibility", "#3fb890"], ["ellmer", "#ff8a92"], ["brailleR", "#1971d6"]],
+            footer: 'To get started, you will need to get an API key for OpenAI from <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">https://platform.openai.com/api-keys</a>.'
         };
 
         const PROJECTS = [
-             {title: "Shiny App",
+             {
+                title: "AltTextGenerator",
+                sub: "Shiny app",
                 desc: "Lorem Ipsum .... bla bla shiny app bla bla R package bla bla",
                 link: "https://maliny.shinyapps.io/alt-text/",
                 art: "app",
                 tags:  [["Shiny", "#c3cbe6"], ["Web app", "#ff8a92"]]},
                 
-            {title: "R package documentation",
+            {
+                title: "plotnarrate",
+                sub: "R package",
                 desc: "Lorem Ipsum .... bla bla shiny app bla bla R package bla bla",
                 link: "https://numbats.github.io/plotnarrate/",
                 art: "docs",
@@ -129,8 +134,8 @@
 
         document.getElementById("site-title").textContent = SITE.title;
         document.getElementById("site-desc").textContent = SITE.desc;
+        document.getElementById("site-foot").innerHTML = SITE.footer;
         document.getElementById("site-tags").innerHTML = tagHtml(SITE.tags);
-        document.getElementById("site-foot").textContent = SITE.footer;
         document.title = SITE.title;
 
         const cards = document.getElementById("cards");
