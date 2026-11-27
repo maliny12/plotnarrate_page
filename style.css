@@ -1,4 +1,4 @@
-/* Styles for the alt-text project page (linked from index.html) */
+
 :root {
     color-scheme: light;
     --bg: #d9d9d9;
@@ -66,3 +66,18 @@ body {
     line-height: 1.5
 }
 
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap)
+}
+
+.card {
+    position: relative;
+    display: block;
+    min-height: 440px;
+    overflow: hidden;
+    color: var(--ink);
+    text-decoration: none;
+    background: #4a4f5a;
+}
