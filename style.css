@@ -21,3 +21,39 @@ body {
     padding: var(--gap);
     overflow-x: clip;
 }
+
+.head {
+    background: var(--panel);
+    padding: 22px 18px 20px
+}
+
+.head h1 {
+    font-size: clamp(24px, 3.4vw, 34px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0 0 10px
+}
+
+.head p {
+    margin: 0;
+    max-width: 70ch;
+    color: var(--soft);
+    font-size: 14px
+}
+
+.head .tags {
+    padding-top: 18px
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px
+}
+
+.tag {
+    font-size: 11px;
+    color: #111;
+    padding: 3px 7px;
+    line-height: 1.5
+}
