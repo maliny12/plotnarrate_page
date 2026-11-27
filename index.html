@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <main class="list">
@@ -100,97 +101,6 @@
             <rect x="232" y="222" width="70" height="4" fill="#cfcfcf" />
         </svg>
     </template>
-
-<script>
-    {
-        const SITE = {
-            title : "Alt-text for statistical graphics",
-            desc:  "This project bla bla ",
-            tags: [["R", "#c3cbe6"], ["Shiny", "#d6a119"], ["Accessibility", "#3fb890"], ["ellmer", "#ff8a92"], ["brailleR", "#1971d6"]],
-            footer: ""
-        };
-
-        const PROJECTS = [
-             {
-                title: "AltTextGenerator",
-                sub: "Shiny app",
-                desc: "Lorem Ipsum .... bla bla shiny app bla bla R package bla bla",
-                link: "https://maliny.shinyapps.io/alt-text/",
-                art: "app",
-                image: "images/shinyapp.png",
-                tags:  [["Shiny", "#c3cbe6"], ["Web app", "#ff8a92"]]},
-                
-            {
-                title: "plotnarrate",
-                sub: "R package",
-                desc: "Lorem Ipsum .... bla bla shiny app bla bla R package bla bla",
-                link: "https://numbats.github.io/plotnarrate/",
-                art: "docs",
-                image: "images/plotnarrate.png",
-                tags: [["R package", "#c3cbe6"], ["Documentation", "#ff8a92"]]}
-        ];
-
-        const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-        const tagHtml = tags => tags.map(([t, c]) => `<span class="tag" style="background:${esc(c)}">${esc(t)}</span>`).join("");
-        const art = name => (document.getElementById("art-" + name) || document.getElementById("art-app")).innerHTML;
-
-        document.getElementById("site-title").textContent = SITE.title;
-        document.getElementById("site-desc").textContent = SITE.desc;
-        document.getElementById("site-foot").innerHTML = SITE.footer;
-        document.getElementById("site-tags").innerHTML = tagHtml(SITE.tags);
-        document.title = SITE.title;
-
-        const cards = document.getElementById("cards");
-                cards.innerHTML = PROJECTS.map(p => `
-            <a class="card" href="${esc(p.link)}" target="_blank" rel="noopener">
-            <div class="bg">${p.image ? `<img src="${esc(p.image)}" alt="">` : art(p.art)}</div>
-            <div class="info">
-                <div class="label">
-                <h2>${esc(p.title)}</h2>
-                <p class="sub">${esc(p.sub)}</p>
-                </div>
-                <p class="desc" aria-label="${esc(p.desc)}"></p>
-                <div class="tags">${tagHtml(p.tags)}</div>
-            </div>
-            </a>`).join("");
-
-        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const touch = matchMedia("(hover: none)").matches;
-
-        cards.querySelectorAll(".card").forEach((card, i) => {
-            const out = card.querySelector(".desc");
-            const text = PROJECTS[i].desc;
-            let timer = null;
-
-            if (touch) { out.textContent = text; return; }   // for phone we just reveal it
-
-            const show = () => {
-                clearTimeout(timer);
-                out.textContent = "";
-                const cur = document.createElement("span");
-                cur.className = "cursor";
-                out.appendChild(cur);
-                if (reduce) { cur.before(text); return; }
-                let n = 0;
-                const step = () => {
-                    if (n >= text.length) return;
-                    cur.before(text[n++]);
-                    const ch = text[n - 1];
-                    timer = setTimeout(step, ch === "." || ch === "," ? 90 : 14 + Math.random() * 20);
-                };
-                step();
-            };
-            const hide = () => { clearTimeout(timer); out.textContent = ""; };
-
-            card.addEventListener("mouseenter", show);
-            card.addEventListener("focus", show);
-            card.addEventListener("mouseleave", hide);
-            card.addEventListener("blur", hide);
-        });
-
-        
-}
-</script>
     
 </body>
 

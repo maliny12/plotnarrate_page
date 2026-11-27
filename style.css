@@ -32,7 +32,8 @@ body {
 
 .head {
     background: var(--panel);
-    padding: 22px 18px 20px
+    padding: 22px 18px 20px;
+    
 }
 
 .head h1 {
@@ -40,6 +41,15 @@ body {
     font-weight: 400;
     line-height: 1.15;
     margin: 0 0 10px
+}
+
+.head, .card {
+    border-radius: 21px;
+
+}
+
+.tag, .label{
+    border-radius: 5px;
 }
 
 .head p {
