@@ -16,7 +16,7 @@
             <p id="site-desc"></p>
             <div class="tags" id="site-tags"></div>
         </header>
-        <div class="list" id="list" aria-label="Project links"></div>
+        <div class="cards" id="cards" aria-label="Project links"></div>
         <footer id="site-foot"></footer>
     </main>
 
@@ -133,10 +133,53 @@
         document.getElementById("site-foot").textContent = SITE.footer;
         document.title = SITE.title;
 
-        
+        const cards = document.getElementById("cards");
+                cards.innerHTML = PROJECTS.map(p => `
+            <a class="card" href="${esc(p.link)}" target="_blank" rel="noopener">
+            <div class="bg">${p.image ? `<img src="${esc(p.image)}" alt="">` : art(p.art)}</div>
+            <div class="info">
+                <div class="label">
+                <h2>${esc(p.title)}</h2>
+                <p class="sub">${esc(p.sub)}</p>
+                </div>
+                <p class="desc" aria-label="${esc(p.desc)}"></p>
+                <div class="tags">${tagHtml(p.tags)}</div>
+            </div>
+            </a>`).join("");
 
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const touch = matchMedia("(hover: none)").matches;
 
-    
+        cards.querySelectorAll(".card").forEach((card, i) => {
+            const out = card.querySelector(".desc");
+            const text = PROJECTS[i].desc;
+            let timer = null;
+
+            if (touch) { out.textContent = text; return; }   // for phone we just reveal it
+
+            const show = () => {
+                clearTimeout(timer);
+                out.textContent = "";
+                const cur = document.createElement("span");
+                cur.className = "cursor";
+                out.appendChild(cur);
+                if (reduce) { cur.before(text); return; }
+                let n = 0;
+                const step = () => {
+                    if (n >= text.length) return;
+                    cur.before(text[n++]);
+                    const ch = text[n - 1];
+                    timer = setTimeout(step, ch === "." || ch === "," ? 90 : 14 + Math.random() * 20);
+                };
+                step();
+            };
+            const hide = () => { clearTimeout(timer); out.textContent = ""; };
+
+            card.addEventListener("mouseenter", show);
+            card.addEventListener("focus", show);
+            card.addEventListener("mouseleave", hide);
+            card.addEventListener("blur", hide);
+        });
 
         
 }
