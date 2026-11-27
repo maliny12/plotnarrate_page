@@ -1,0 +1,23 @@
+/* Styles for the alt-text project page (linked from index.html) */
+:root {
+    color-scheme: light;
+    --bg: #d9d9d9;
+    --panel: #121212;
+    --ink: #f2f2f2;
+    --soft: #bdbdbd;
+    --gap: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    min-width: 0
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 13px/1.6 "IBM Plex Mono", Menlo, Consolas, "Courier New", monospace;
+    padding: var(--gap);
+    overflow-x: clip;
+}
