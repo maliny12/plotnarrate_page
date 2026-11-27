@@ -22,6 +22,14 @@ body {
     overflow-x: clip;
 }
 
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    max-width: 1400px;
+    margin: 0 auto
+}s
+
 .head {
     background: var(--panel);
     padding: 22px 18px 20px
@@ -57,3 +65,4 @@ body {
     padding: 3px 7px;
     line-height: 1.5
 }
+
