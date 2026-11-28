@@ -1,6 +1,6 @@
 const SITE = {
-    title: "Alt-text for statistical graphics",
-    desc: "This project bla bla ",
+    title: "Alternative Text for Statistical Graphics",
+    desc: "This project aims to improve the accessibility of statistical graphics by generating alt-text from multiple sources of information, including plot images, underlying R code, and supporting text. To get started, you will need an <a href='https://platform.openai.com/api-keys' target='_blank' rel='noopener noreferrer'>OpenAI API key</a>.",
     tags: [["R", "#c3cbe6"], ["Shiny", "#d6a119"], ["Accessibility", "#3fb890"], ["ellmer", "#ff8a92"], ["brailleR", "#1971d6"]],
     footer: ""
 };
@@ -9,7 +9,7 @@ const PROJECTS = [
     {
         title: "AltTextGenerator",
         sub: "Shiny app",
-        desc: "Lorem Ipsum .... bla bla shiny app bla bla R package bla bla",
+        desc: "An interactive dashboard for generating alt-text from plot images, source code, and figure captions. Users can also provide feedback on the generated descriptions through the interface.",
         link: "https://maliny.shinyapps.io/alt-text/",
         art: "app",
         image: "images/shinyapp.png",
@@ -19,7 +19,7 @@ const PROJECTS = [
     {
         title: "plotnarrate",
         sub: "R package",
-        desc: "Lorem Ipsum .... bla bla shiny app bla bla R package bla bla",
+        desc: "Generates alt-text from plot images, Quarto and R Markdown documents using ellmer and BrailleR, based on source code and reference text to create more informative descriptions.",
         link: "https://numbats.github.io/plotnarrate/",
         art: "docs",
         image: "images/plotnarrate.png",
@@ -32,7 +32,7 @@ const tagHtml = tags => tags.map(([t, c]) => `<span class="tag" style="backgroun
 const art = name => (document.getElementById("art-" + name) || document.getElementById("art-app")).innerHTML;
 
 document.getElementById("site-title").textContent = SITE.title;
-document.getElementById("site-desc").textContent = SITE.desc;
+document.getElementById("site-desc").innerHTML = SITE.desc;
 document.getElementById("site-foot").innerHTML = SITE.footer;
 document.getElementById("site-tags").innerHTML = tagHtml(SITE.tags);
 document.title = SITE.title;
